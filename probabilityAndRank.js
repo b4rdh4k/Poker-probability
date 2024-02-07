@@ -101,11 +101,11 @@ function calculateProbabilities(){
     return rankedHands;
 }
 
-function main(){
+function main() {
     const rankedHands = calculateProbabilities();
-    console.log(rankedHands);
+    console.log('Rank(M->L)\tProbability\t\tHand');
     rankedHands.forEach((hand, index) => {
-        console.log(`${index + 1} ${hand.probability * 100}% ${hand.name}`);
+        console.log(`${index + 1}\t\t${(hand.probability * 100).toFixed(6)}%\t\t${hand.name}`);
     });
 }
 

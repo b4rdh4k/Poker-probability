@@ -24,7 +24,7 @@ function isStraight(cards){ //funksion i cili e shikon nese letrat tona e krijoj
     return sortedRanks[4] - sortedRanks[0] === 4;
 }
 
-function isFlush(cards){ //funlsioni i cili e shikon nese letrat tona e krijojne nje flush
+function isFlush(cards){ //funksioni i cili e shikon nese letrat tona e krijojne nje flush
     const suits = cards.map(card => card % 4);
     return new Set(suits).size === 1;
 }
@@ -41,14 +41,13 @@ function countRanks(cards){ //funksion i cili i mbledh te gjitha dukurite/shfaqj
 function determineHandRanking(cards){
     const rankCounts = countRanks(cards);
     const rankValues = Object.values(rankCounts);
-
-    if (isStraight(cards) && isFlush(cards)) {
         // Royal flush or straight flush, dallojne sepse royal flush ka nje kombinim te vecante me letrat mbreterore.
         //Per dallimin mes llojeve te poker hands, mund te lexoni ne readme.
+    if (isStraight(cards) && isFlush(cards)) {
         const ranks = cards.map(card => Math.floor(card / 4));
         const uniqueRanks = new Set(ranks);
-        if (uniqueRanks.has(0) && uniqueRanks.has(12)) {
-            return 9; // Royal flush
+        if (uniqueRanks.has(8) && uniqueRanks.has(9) && uniqueRanks.has(10) && uniqueRanks.has(11) && uniqueRanks.has(12)) {
+            return 9; // Royal Flush
         }
         return 8; // Straight flush
     }else if (rankValues.includes(4)) {
@@ -95,7 +94,7 @@ function calculateProbabilities(){
         'Straight flush',
         'Royal flush'
     ];
-
+    //rankimi i llojeve te poker hands sipas probabilitetit
     const rankedHands = handNames.map((name, index) => ({name, probability: probabilities[index]}));
     rankedHands.sort((a, b) => b.probability - a.probability);
     return rankedHands;

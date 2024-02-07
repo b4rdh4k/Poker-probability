@@ -43,6 +43,8 @@ function determineHandRanking(cards){
     const rankValues = Object.values(rankCounts);
 
     if (isStraight(cards) && isFlush(cards)) {
+        // Royal flush or straight flush, dallojne sepse royal flush ka nje kombinim te vecante me letrat mbreterore.
+        //Per dallimin mes llojeve te poker hands, mund te lexoni ne readme.
         const ranks = cards.map(card => Math.floor(card / 4));
         const uniqueRanks = new Set(ranks);
         if (uniqueRanks.has(0) && uniqueRanks.has(12)) {
@@ -67,7 +69,34 @@ function determineHandRanking(cards){
         return 0; // High card
     }
 function calculateProbabilities(){
+    const allCards = Array.from({length: 52}, (_, i) => i);
+    const allCombinations = combinations(allCards, 5);
+    const handCounts = Array(10).fill(0);
 
+    allCombinations.forEach(combination => {
+        const handRanking = determineHandRanking(combination);
+        handCounts[handRanking]++;
+    });
+
+    const totalHands = allCombinations.length;
+    const probabilities = handCounts.map(count => count / totalHands);
+
+    const handNames = [
+        'High card',
+        'One pair',
+        'Two pair',
+        'Three of a kind',
+        'Straight',
+        'Flush',
+        'Full house',
+        'Four of a kind',
+        'Straight flush',
+        'Royal flush'
+    ];
+
+    const rankedHands = handNames.map((name, index) => ({name, probability: probabilities[index]}));
+    rankedHands.sort((a, b) => b.probability - a.probability);
+    return rankedHands;
 }
 
 function main(){

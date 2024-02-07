@@ -61,13 +61,14 @@ function determineHandRanking(cards){
         return 4; // Straight
     }else if (rankValues.includes(3)) {
         return 3; // Three of a kind
-    }else if (rankValues.filter(value => valie === 2).length === 2) {
+    }else if (rankValues.filter(value => value === 2).length === 2) {
         return 2; // Two pair
     }else if (rankValues.includes(2)) {
         return 1; // One pair
     }else {
         return 0; // High card
     }
+}
 function calculateProbabilities(){
     const allCards = Array.from({length: 52}, (_, i) => i);
     const allCombinations = combinations(allCards, 5);
@@ -81,6 +82,7 @@ function calculateProbabilities(){
     const totalHands = allCombinations.length;
     const probabilities = handCounts.map(count => count / totalHands);
 
+    //llojet e poker hands prej asaj me probabilitet me te larte te shfaqjes, tek ajo me probabilitet me te ulet (High card -> Royal flush)
     const handNames = [
         'High card',
         'One pair',
@@ -100,5 +102,11 @@ function calculateProbabilities(){
 }
 
 function main(){
-
+    const rankedHands = calculateProbabilities();
+    console.log(rankedHands);
+    rankedHands.forEach((hand, index) => {
+        console.log(`${index + 1} ${hand.probability * 100}% ${hand.name}`);
+    });
 }
+
+main();

@@ -4,6 +4,7 @@ This is directly inspired by the book "Discrete mathematics and its applications
 ou can find it in the 7th chapter of the book (Discrete probability, pg. 525) under the section of "Computations and Explorations), exercise 1.
 
 **Explanation of poker hands**
+
 A five-card stud poker is a classic game of chance, in which each player is dealt five cards, the winner is the player with the best five-card hand wins.
 There are 9 kinds of cards (in my code there are ten, as there is a slight difference between Royal and Straight flush but it's too small to count as a different hand).
   1. _Straight flush_: five cards of the same suit in sequence, such as: 2♥, 3♥, 4♥, 5♥, 6♥
@@ -18,13 +19,15 @@ There are 9 kinds of cards (in my code there are ten, as there is a slight diffe
 As I mentioned before, I added _Royal flush_ to the code as well, just because it's more fun and rarer than regular straigh flush, as it takes 10♥, J♥, Q♥, K♥, A♥.
 
 **Where is discrete mathematics useful in poker?**
+
 The game of five-card stud poker is a statistical experiment, because every deal can have more than one possible outcome, every possible outcome can be specified in advance and most importantly, the outcome of the experiment depends purely on chance.
 
   _**Calculating poker probability**_
+  
 To be able to count the probability of each hand, we need to know how many possible hands can be dealt from a standard deck of 52 cards and how many number of hands can be dealt for a particular type. In short, we use this formula;
   **Probability =	Number of hands of a particular type / Number of possible hands**
 
-    **Counting all possible combinations**
+    Counting all possible combinations
 To count the combination of all possible hands, we need to use a formula:
   **nCr = n(n - 1)(n - 2)...(n - r + 1)/r! = n! / r!(n - r)!**
 Since our topic is about five-card stud poker from a standard deck of 52 cards, we come to the usable formula and number:
